@@ -15,10 +15,13 @@ const signup = async (req, res, next) => {
       await User.create({
         username: req.body.username,
         name: req.body.name,
-        email: req.body.email,
         role: req.body.role,
-        foto: req.body.foto,
-        descripcion: req.body.descripcion,
+        email: req.body.email,
+        phone: req.body.phone,
+        photo_url: req.body.photo_url,
+        skills: req.body.skills,
+        company: req.body.company,
+        wallet_address: req.body.wallet_address,
         password: hash,
       }).then((user) => res.status(200).json({ user }))
         .catch((e) => res.status(400).json({ e }));
@@ -48,7 +51,7 @@ const login = async (req, res, next) => {
 
 const getUser = async (req, res, next) => {
   try {
-    const user = await User.findOne({ where: { id: req.params.id } });
+    const user = await User.findOne({ where: { user_id: req.params.id } });
     if (!user) return res.status(400).json({ Error: 'User not found' });
     return res.status(200).json({ user });
   } catch (e) {
@@ -70,7 +73,7 @@ const updateUser = async (req, res, next) => {
   try {
     const fieldsToUpdate = removeEmpty(req.body);
 
-    const user = await User.findOne({ where: { id: req.params.id } });
+    const user = await User.findOne({ where: { user_id: req.params.id } });
     if (!user) return res.status(400).json({ Error: 'User not found' });
 
     await user.update(fieldsToUpdate);
@@ -82,7 +85,7 @@ const updateUser = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
   try {
-    const user = await User.findOne({ where: { id: req.params.id } });
+    const user = await User.findOne({ where: { user_id: req.params.id } });
     if (!user) return res.status(400).json({ Error: 'User not found' });
     user.destroy();
     return res.status(200).json({ user });
