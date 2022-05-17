@@ -1,0 +1,9 @@
+const estado = {
+  PENDIENTEPAGO: 'PENDIENTEPAGO',
+  CONFIRMADA: 'CONFIRMADA',
+  APLAZADA: 'APLAZADA',
+  CANCELADA: 'CANCELEDA',
+  COMPLETADA: 'COMPLETADA',
+};
+
+module.exports = estado;
