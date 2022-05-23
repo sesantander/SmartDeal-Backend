@@ -48,4 +48,20 @@ const get = async (req, res, next) => {
   }
 };
 
-export { get, create, update };
+const getDocumentByUser = async (req, res, next) => {
+  try {
+    const document = await Document.findOne({ where: { user_id: req.params.user_id } });
+    if (!document) return res.status(400).json({ Error: 'Document not found' });
+
+    return res.status(200).json({ data: { document } });
+  } catch (e) {
+    next(e);
+  }
+};
+
+export {
+  get,
+  create,
+  update,
+  getDocumentByUser,
+};

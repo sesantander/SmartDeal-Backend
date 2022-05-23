@@ -59,6 +59,16 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getUserByUsername = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ where: { username: req.params.username } });
+    if (!user) return res.status(400).json({ Error: 'User not found' });
+    return res.status(200).json({ user });
+  } catch (e) {
+    next(e);
+  }
+};
+
 const getAllUsers = async (req, res, next) => {
   try {
     const user = await User.findAll();
@@ -98,6 +108,7 @@ export {
   signup,
   login,
   getUser,
+  getUserByUsername,
   getAllUsers,
   updateUser,
   deleteUser,
