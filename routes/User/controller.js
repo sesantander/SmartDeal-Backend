@@ -38,8 +38,9 @@ const login = async (req, res, next) => {
       if (err) return res.status(401).json({ message: 'Authentication failed' });
       if (result) {
         const token = jwt.sign({ username: user.username, userId: user.id, role: user.role }, process.env.SECRET_WORD, { expiresIn: '1h' });
+
         return res.status(200).json({
-          token, userId: user.id, username: user.username, role: user.role,
+          token, user_id: user.user_id, username: user.username, role: user.role,
         });
       }
       return res.status(401).json({ message: 'Wrong password' });
