@@ -50,7 +50,7 @@ const get = async (req, res, next) => {
 
 const getDocumentByUser = async (req, res, next) => {
   try {
-    const document = await Document.findOne({ where: { user_id: req.params.user_id } });
+    const document = await Document.findAll({ where: { user_id: req.params.user_id } });
     if (!document) return res.status(400).json({ Error: 'Document not found' });
 
     return res.status(200).json({ data: { document } });

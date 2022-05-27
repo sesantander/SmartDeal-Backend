@@ -2,7 +2,7 @@
 import { Router } from 'express';
 
 import {
-  get, create, update, getDocumentByUser,
+  create, update, getDocumentByUser,
 } from './controller.js';
 
 const app = Router();
