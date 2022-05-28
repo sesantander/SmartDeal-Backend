@@ -10,6 +10,6 @@ const app = Router();
 app.get('/:user_id', getDocumentByUser);
 app.post('/', create);
 app.patch('/:id', update);
-app.post('/downloadInvoice', downloadInvoice);
+app.get('/downloadInvoice/down', downloadInvoice);
 
 export default app;

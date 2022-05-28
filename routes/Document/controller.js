@@ -109,11 +109,10 @@ const downloadInvoice = async (req, res, next) => {
         console.error(error);
       });
 
-    //  const file = fs.createReadStream('output.pdf');
-
+    // const file = fs.createReadStream('output.pdf');
     return res.sendFile('output.pdf', { root: '.' });
 
-    //  return file.pipe(res);
+    // return file.pipe(res);
   } catch (e) {
     next(e);
   }
