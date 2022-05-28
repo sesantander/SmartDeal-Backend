@@ -65,7 +65,7 @@ const getDocumentByUser = async (req, res, next) => {
 
 const downloadInvoice = async (req, res, next) => {
   try {
-    const body = { ...req.body };
+    const body = { ...req.query };
 
     const userFrom = await User.findOne({ where: { user_id: body.from_user_id } });
     const userTo = await User.findOne({ where: { user_id: body.to_user_id } });
